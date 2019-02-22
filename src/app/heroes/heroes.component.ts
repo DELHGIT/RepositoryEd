@@ -1,71 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Hero } from '../hero';
-import { HeroesService } from './heroes.service';
+import { BusinessService } from '../business.service';
+import Business from '../Business';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
-  providers: [ HeroesService ],
+  providers: [ BusinessService ],
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[];
-  editHero: Hero; // the hero currently being edited
+  //heroes: Hero[];
+//  businessListe: any = {};
+  businessListe: Business[];
+  editBusiness: Business; // the hero currently being edited
 
-  //constructor(private heroesService: HeroesService) { }
-  constructor(private heroesService: HeroesService) { }
+  //constructor(private businessService: businessService) { }
+  constructor(private businessService: BusinessService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getBusinesses();
   }
 
-  getHeroes(): void {
-    this.heroesService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+  getBusinesses(): void {
+    this.businessService.getBusinesses()
+      .subscribe(b => this.businessListe = b as Business[]);
   }
 
   add(name: string): void {
-    this.editHero = undefined;
+   /* this.editBusiness = undefined;
     name = name.trim();
     if (!name) { return; }
-
-    // The server will generate the id for this new hero
+    
     const newHero: Hero = { name } as Hero;
-    this.heroesService.addHero(newHero)
+    this.businessService.addHero(newHero)
       .subscribe(hero => this.heroes.push(hero));
+      */
   }
 
-  delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroesService.deleteHero(hero.id).subscribe();
-    /*
-    // oops ... subscribe() is missing so nothing happens
-    this.heroesService.deleteHero(hero.id);
-    */
+  delete(p_Business: Business): void {
+    this.businessListe = this.businessListe.filter(h => h !== p_Business);
+    this.businessService.deleteBusiness(p_Business._id).subscribe();
   }
 
-  edit(hero) {
-    this.editHero = hero;
+  edit(p_Business) {
+    this.editBusiness = p_Business;
   }
 
   search(searchTerm: string) {
-    this.editHero = undefined;
+    /*this.editBusiness = undefined;
     if (searchTerm) {
-      this.heroesService.searchHeroes(searchTerm)
+      this.businessService.searchHeroes(searchTerm)
         .subscribe(heroes => this.heroes = heroes);
-    }
+    }*/
   }
 
   update() {
-    if (this.editHero) {
-      this.heroesService.updateHero(this.editHero)
-        .subscribe(hero => {
+    if (this.editBusiness) {
+      this.businessService.updateBusinessObject(this.editBusiness)
+        .subscribe(_business => {
           // replace the hero in the heroes list with update from server
-          const ix = hero ? this.heroes.findIndex(h => h.id === hero.id) : -1;
-          if (ix > -1) { this.heroes[ix] = hero; }
+          const ix = _business ? (this.businessListe as Business[]).findIndex(h => h._id === _business._id) : -1;
+          if (ix > -1) { this.businessListe[ix] = _business; }
         });
-      this.editHero = undefined;
+      this.editBusiness = undefined;
     }
   }
 }

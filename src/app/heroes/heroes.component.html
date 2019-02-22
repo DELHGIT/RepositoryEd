@@ -4,21 +4,25 @@
     <input #heroName />
   </label>
     <!-- (click) passes input value to add() and then clears the input -->
-    <button (click)="add(heroName.value); heroName.value=''">
-    add
-  </button>
-    <button (click)="search(heroName.value)">
-    search
-  </button>
+    <button (click)="add(heroName.value); heroName.value=''"> add </button>
+    <button (click)="search(heroName.value)"> search</button>
 </div>
 
 <ul class="heroes">
-    <li *ngFor="let hero of heroes">
-        <a (click)="edit(hero)">
-            <span class="badge">{{ hero.id || -1 }}</span>
-            <span *ngIf="hero!==editHero">{{hero.name}}</span>
-            <!--input *ngIf="hero===editHero" [(ngModel)]="hero.name" (blur)="update()" (keyup.enter)="update()"-->
+    <li *ngFor="let business of businessListe">
+        <a (click)="edit(business)">
+            <!--span style="display: :none" class="badge">{{ business._id || -1 }}</span-->
+            <span *ngIf="business!==editBusiness">{{business.person_name}}</span>
+            <input *ngIf="business===editBusiness" [(ngModel)]="business.person_name" (blur)="update()" (keyup.enter)="update()" />
+
         </a>
-        <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
+
+        <a (click)="edit(business)">
+            <!--span style="display: :none" class="badge">{{ business._id || -1 }}</span-->
+            <span *ngIf="business!==editBusiness">{{business.address}}</span>
+            <input *ngIf="business===editBusiness" [(ngModel)]="business.address" (blur)="update()" (keyup.enter)="update()" />
+        </a>
+
+        <button class="delete" title="delete business" (click)="delete(business)">x</button>
     </li>
 </ul>

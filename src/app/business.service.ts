@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import Business from './Business';
+import { Observable } from 'rxjs';
 
 
 const httpOptions = {
@@ -41,7 +43,15 @@ editBusiness(id) {
   return this.http.get(`${this.uri}/edit/${id}`);
   }
 
-  updateBusiness(person_name, business_name, business_gst_number, address, id) {
+  updateBusinessObject(p_business:Business) : Observable<Business> {
+    return this.updateBusiness(p_business.person_name,
+      p_business.business_name,
+      p_business.business_gst_number,
+      p_business.address,
+      p_business._id);
+  }
+
+  updateBusiness(person_name, business_name, business_gst_number, address, id) : Observable<Business> {
 
     const obj = {
         person_name: person_name,
@@ -49,7 +59,7 @@ editBusiness(id) {
         business_gst_number: business_gst_number,
         address : address
       };
-   return  this.http.post(`${this.uri}/update/${id}`, obj) ;
+   return  this.http.post<Business>(`${this.uri}/update/${id}`, obj) ;
   //   this.http.post(`${this.uri}/update/${id}`, obj) .subscribe(res => console.log('Done'));
     // return this.http.post(`${this.uri}/update/${id}`, obj);//update automatically after an edit
   }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,7 @@ import { BusinessService } from './business.service';
 import { HeroesComponent } from './heroes/heroes.component';
 @NgModule({
    declarations: [ AppComponent, GstAddComponent,GstGetComponent, GstEditComponent,HeroesComponent],
-   imports: [  BrowserModule,AppRoutingModule,SlimLoadingBarModule, ReactiveFormsModule, HttpClientModule],
+   imports: [  BrowserModule,AppRoutingModule,SlimLoadingBarModule, ReactiveFormsModule, HttpClientModule,FormsModule],
    providers: [ BusinessService ],
    bootstrap: [ AppComponent]
 })

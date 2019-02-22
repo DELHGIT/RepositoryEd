@@ -15,10 +15,10 @@ const routes: Routes = [ {
                         {
                           path: 'business', component: GstGetComponent
                         }
-                        /*,
+                        ,
                         {
                           path: 'heroes',  component: HeroesComponent
-                        }*/];
+                        }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
