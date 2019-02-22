@@ -40,7 +40,7 @@ businessRoutes.route('/edit/:id').get(function(req, res) {
 
 //  Defined update route
 businessRoutes.route('/update/:id').post(function(req, res) {
-    Business.findById(req.params.id, function(err, next, business) {
+    Business.findById(req.params.id, function(err, /*next,*/ business) {
         if (!business)
             return next(new Error('Could not load Document'));
         else {
