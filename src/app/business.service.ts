@@ -49,8 +49,8 @@ editBusiness(id) {
         business_gst_number: business_gst_number,
         address : address
       };
-  // return  this.http.post(`${this.uri}/update/${id}`, obj) ;
-     this.http.post(`${this.uri}/update/${id}`, obj) .subscribe(res => console.log('Done'));
+   return  this.http.post(`${this.uri}/update/${id}`, obj) ;
+  //   this.http.post(`${this.uri}/update/${id}`, obj) .subscribe(res => console.log('Done'));
     // return this.http.post(`${this.uri}/update/${id}`, obj);//update automatically after an edit
   }
 

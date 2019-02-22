@@ -39,25 +39,28 @@ export class GstEditComponent implements OnInit {
     });
   }
 
-  updateBusiness(person_name, business_name, business_gst_number, address) {
+//Then, in your gst-edit.component, subscribe to the response so you know when the async call is finished, 
+//then navigate back to the business page:
+
+updateBusiness(person_name, business_name, business_gst_number, address){
+  this.route.params.subscribe(params => {
+  this.bs.updateBusiness(person_name, business_name, business_gst_number, address, params['id'])
+                                    .subscribe(res => {
+                                                    console.log('update and show result : Done')
+                                                    this.business = res;
+                                                    this.router.navigate(['business']);
+                                                });
+                                        });
+}
+
+
+
+ /* updateBusiness(person_name, business_name, business_gst_number, address) {
     this.route.params.subscribe(params => {
        this.bs.updateBusiness(person_name, business_name, business_gst_number,address, params['id']);
        this.router.navigate(['business']);
  });
-}
-
-//Then, in your gst-edit.component, subscribe to the response so you know when the async call is finished, 
-//then navigate back to the business page:
-/*
-updateBusiness(person_name, business_name, business_gst_number){
-  this.route.params.subscribe(params => {
-  this.bs.updateBusiness(person_name, business_name, business_gst_number, params['id'])
-  .subscribe(res => {
-                  console.log('update : Done')
-                  this.business = res;
-                  this.router.navigate(['business']);
-              });
-});
 }*/
+
 
 }
