@@ -13,6 +13,7 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[];
   editHero: Hero; // the hero currently being edited
 
+  //constructor(private heroesService: HeroesService) { }
   constructor(private heroesService: HeroesService) { }
 
   ngOnInit() {

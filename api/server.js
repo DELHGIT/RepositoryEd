@@ -10,7 +10,7 @@ const express = require('express'),
 const businessRoute = require('./routes/business.route');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-    () => { console.log('Database is connected') },
+    () => { console.log('MongoDB : Database is connected') },
     err => { console.log('Can not connect to the database' + err) }
 );
 
@@ -31,8 +31,8 @@ app.all('*', function(req, res, next) {
     }
 });
 
-let port = 4200; // process.env.PORT || 4000;
+let port = 4000; // process.env.PORT || 4000;
 
-const server = app.listen(4200, function() {
+const server = app.listen(port, function() {
     console.log('Listening on port ' + port);
 });

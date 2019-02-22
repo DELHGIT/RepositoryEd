@@ -1,5 +1,4 @@
 // Business.js
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -7,7 +6,9 @@ const Schema = mongoose.Schema;
 let Business = new Schema({
     person_name: { type: String },
     business_name: { type: String },
+    address: { type: String },
     business_gst_number: { type: Number }
+
 }, {
     collection: 'business'
 });

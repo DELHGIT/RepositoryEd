@@ -24,7 +24,9 @@ export class GstEditComponent implements OnInit {
     this.angForm = this.fb.group({
         person_name: ['', Validators.required ],
         business_name: ['', Validators.required ],
+        address: ['', Validators.required ],
         business_gst_number: ['', Validators.required ]
+        
       });
     }
 
@@ -37,9 +39,9 @@ export class GstEditComponent implements OnInit {
     });
   }
 
-  updateBusiness(person_name, business_name, business_gst_number) {
+  updateBusiness(person_name, business_name, business_gst_number, address) {
     this.route.params.subscribe(params => {
-       this.bs.updateBusiness(person_name, business_name, business_gst_number, params['id']);
+       this.bs.updateBusiness(person_name, business_name, business_gst_number,address, params['id']);
        this.router.navigate(['business']);
  });
 }
