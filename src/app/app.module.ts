@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { GstAddComponent } from './gst-add/gst-add.component';
 import { GstGetComponent } from './gst-get/gst-get.component';
 import { GstEditComponent } from './gst-edit/gst-edit.component';
+import { HttpErrorHandler }     from './http-error-handler.service';
 
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
@@ -15,7 +16,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 @NgModule({
    declarations: [ AppComponent, GstAddComponent,GstGetComponent, GstEditComponent,HeroesComponent],
    imports: [  BrowserModule,AppRoutingModule,SlimLoadingBarModule, ReactiveFormsModule, HttpClientModule,FormsModule],
-   providers: [ BusinessService ],
+   providers: [ BusinessService,HttpErrorHandler ],
    bootstrap: [ AppComponent]
 })
 export class AppModule { }

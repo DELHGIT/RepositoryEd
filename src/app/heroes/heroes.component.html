@@ -8,8 +8,8 @@
     <button (click)="search(heroName.value)"> search</button>
 </div>
 
-<ul class="heroes">
-    <li *ngFor="let business of businessListe">
+<ul class="heroes" *ngFor="let business of businessListe">
+    <li>
         <a (click)="edit(business)">
             <!--span style="display: :none" class="badge">{{ business._id || -1 }}</span-->
             <span *ngIf="business!==editBusiness">{{business.person_name}}</span>

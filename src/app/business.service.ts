@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import Business from './Business';
 import { Observable } from 'rxjs';
+import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { catchError } from 'rxjs/operators';
 
 
 const httpOptions = {
@@ -12,16 +14,15 @@ const httpOptions = {
   })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root'})
 export class BusinessService {
 
   uri = 'http://localhost:4000/business';//'http://localhost:4200/business';
-  
+  private handleError: HandleError;
 
   constructor(
-    private http: HttpClient) {
+    private http: HttpClient, httpErrorHandler:HttpErrorHandler) {
+      this.handleError = httpErrorHandler.createHandleError('BusinessService');
   }
 
   addBusiness(person_name, business_name, business_gst_number) {
@@ -36,7 +37,9 @@ export class BusinessService {
   }
 
 getBusinesses() {
-  return this.http.get(`${this.uri}`);
+  return this.http.get(`${this.uri}`)
+  .pipe(catchError(this.handleError('getBusinesses', []))
+    );
 }
 
 editBusiness(id) {
